@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dummy-message-api-deployment
+  labels:
+    app: dummy-message-api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dummy-message-api-deployment
+  template:
+    metadata:
+      labels:
+        app: dummy-message-api-deployment
+    spec:
+      containers:
+      - name: dummy-message-api-deployment
+        image: magalhaesdit/dummy-message-api:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000 # Port exposed by the container

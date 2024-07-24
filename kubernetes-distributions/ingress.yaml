@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cluster-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: "teste.local"  # Domain for which the rule applies (remove or set to "*" for all domains)
+    http:
+      paths:
+      - path: /hello(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: hello-service
+            port: 
+              number: 8080
+      - path: /api(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: dummy-message-api-service
+            port: 
+              number: 8000

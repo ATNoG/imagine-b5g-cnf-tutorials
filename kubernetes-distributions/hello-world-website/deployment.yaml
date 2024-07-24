@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deployment
+  labels:
+    app: hello-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-deployment
+  template:
+    metadata:
+      labels:
+        app: hello-deployment
+    spec:
+      containers:
+      - name: hello-deployment
+        image: magalhaesdit/hello-world-website:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dummy-message-api-service
+spec:
+  type: ClusterIP
+  selector:
+    app: dummy-message-api-deployment
+  ports:
+    - protocol: TCP
+      targetPort: 8000  # Port exposed by the container
+      port: 8000  # Port exposed by the service
